@@ -1,0 +1,21 @@
+version: '3'
+services:
+  php:
+    container_name: php-apache90
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./php:/var/www/html/
+    ports:
+      - 8000:80
+  ssh:
+    image: rastasheep/ubuntu-sshd
+    container_name: ssh-container50
+    ports:
+      - "2222:22"
+  mail:
+    image: "maildev/maildev"
+    ports:
+      - 1080:1080
+      - 1025:1025
